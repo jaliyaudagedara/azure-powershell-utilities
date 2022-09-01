@@ -1,0 +1,8 @@
+[
+    {
+        "tenantId": "<Tenant Id>",
+        "subscriptionId": "<Subscription Id>",
+        "resourceGroupName": "<Resource Group Name>",
+        "sqlServerName": "<SQL Server Name>"
+    },
+]
