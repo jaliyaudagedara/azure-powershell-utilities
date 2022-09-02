@@ -1,6 +1,11 @@
+# Description
+#   Utility Script to remove a given FirewallRuleName from set of Azure SQL Servers
+
+# Important Note: This script provided AS IS, please review the code before executing
+
 $firewallRuleName = "<YourFirewallRuleName>"
 
-$json = Get-Content -Raw SqlServerList.JSON | ConvertFrom-Json
+$json = Get-Content -Raw SqlServerList.json | ConvertFrom-Json
 
 foreach ($item in $json) {
     $currentAzContext = Get-AzContext
@@ -17,8 +22,8 @@ foreach ($item in $json) {
 
     $matchingFirewallRules = Get-AzSqlServerFirewallRule -ResourceGroupName $item.resourceGroupName -ServerName $item.sqlServerName -FirewallRuleName $firewallRuleName
 
-    foreach ($rule in $matchingFirewallRules){
-		Write-Host "INF | Removing Firewall RuleName: '$($rule.FirewallRuleName)'."
+    foreach ($rule in $matchingFirewallRules) {
+        Write-Host "INF | Removing Firewall RuleName: '$($rule.FirewallRuleName)'."
         Remove-AzSqlServerFirewallRule -ResourceGroupName $item.resourceGroupName `
             -ServerName $item.sqlServerName `
             -FirewallRuleName $rule.FirewallRuleName

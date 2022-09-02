@@ -1,8 +1,14 @@
 [
     {
-        "tenantId": "<Tenant Id>",
-        "subscriptionId": "<Subscription Id>",
-        "resourceGroupName": "<Resource Group Name>",
-        "sqlServerName": "<SQL Server Name>"
+        "tenantId": "<Tenant Id 1>",
+        "subscriptionId": "<Subscription Id 1>",
+        "resourceGroupName": "<Resource Group Name 1>",
+        "sqlServerName": "<SQL Server Name 1>"
     },
+    {
+        "tenantId": "<Tenant Id 2>",
+        "subscriptionId": "<Subscription Id 2>",
+        "resourceGroupName": "<Resource Group Name 2>",
+        "sqlServerName": "<SQL Server Name 2>"
+    }
 ]

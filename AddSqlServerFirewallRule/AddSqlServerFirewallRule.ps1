@@ -1,7 +1,12 @@
+# Description
+#   Utility Script to add Current IP to set of Azure SQL Servers
+
+# Important Note: This script provided AS IS, please review the code before executing
+
 $currentIpAddress = (Invoke-WebRequest myexternalip.com/raw).content
 $firewallRuleName = "<YourFirewallRuleName>"
 
-$json = Get-Content -Raw SqlServerList.JSON | ConvertFrom-Json
+$json = Get-Content -Raw SqlServerList.json | ConvertFrom-Json
 
 foreach ($item in $json) {
     $currentAzContext = Get-AzContext
