@@ -28,3 +28,11 @@
     }
 ]
 ```
+## Troubleshooting
+
+`WARNING: Unable to acquire token for tenant '<TenantId>' with error 'SharedTokenCacheCredential authentication unavailable. Token acquisition failed for user <User>. Ensure that you have authenticated with a developer tool that supports Azure single sign on`
+
+```
+ Clear-AzContext
+ Connect-AzAccount
+```
