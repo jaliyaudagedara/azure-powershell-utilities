@@ -1,9 +1,5 @@
-## AddSqlServerFirewallRule
-- Utility Script to add Current IP to set of Azure SQL Servers maintained in `SqlServerList.json`
-
-
-## RemoveSqlServerFirewallRule
-- Utility Script to remove a given FirewallRuleName from set of Azure SQL Servers maintained in `SqlServerList.json`
+## AddStorageAccountNetworkRule
+- Utility Script to add Current IP to set of Azure Storage Accounts maintained in `StorageAccountList.json`
 
 ## Notes
 - Install [Azure PowerShell module](https://learn.microsoft.com/en-us/powershell/azure/install-azure-powershell).
@@ -11,20 +7,20 @@
  ```
  Connect-AzAccount
  ```
- - List of Azure SQL Servers are maintained inside `SqlServerList.json` in following format
+ - List of Azure Storage Accounts are maintained inside `StorageAccountList.json` in following format
 ```
 [
     {
         "tenantId": "<Tenant Id 1>",
         "subscriptionId": "<Subscription Id 1>",
         "resourceGroupName": "<Resource Group Name 1>",
-        "sqlServerName": "<SQL Server Name 1>"
+        "storageAccountName": "<Storage Account Name 1>"
     },
     {
         "tenantId": "<Tenant Id 2>",
         "subscriptionId": "<Subscription Id 2>",
         "resourceGroupName": "<Resource Group Name 2>",
-        "sqlServerName": "<SQL Server Name 2>"
+        "storageAccountName": "<Storage Account Name 2>"
     }
 ]
 ```

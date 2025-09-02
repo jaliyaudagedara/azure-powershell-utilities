@@ -1,0 +1,14 @@
+[
+    {
+        "tenantId": "<Tenant Id 1>",
+        "subscriptionId": "<Subscription Id 1>",
+        "resourceGroupName": "<Resource Group Name 1>",
+        "storageAccountName": "<Storage Account Name 1>"
+    },
+    {
+        "tenantId": "<Tenant Id 2>",
+        "subscriptionId": "<Subscription Id 2>",
+        "resourceGroupName": "<Resource Group Name 2>",
+        "storageAccountName": "<Storage Account Name 2>"
+    }
+]
