@@ -1,0 +1,23 @@
+[
+    {
+        "orgId": "<Atlas Organization Id 1>",
+        "projects": [
+            {
+                "projectId": "<Atlas Project Id 1>",
+                "comment": "<Optional comment for the access list entry>"
+            },
+            {
+                "projectId": "<Atlas Project Id 2>"
+            }
+        ]
+    },
+    {
+        "orgId": "<Atlas Organization Id 2>",
+        "profile": "<Optional Atlas CLI Profile Name>",
+        "projects": [
+            {
+                "projectId": "<Atlas Project Id 3>"
+            }
+        ]
+    }
+]

@@ -348,3 +348,11 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Local data files for utility scripts. Copy from the matching
+# resources.template.json and fill in your own tenant/subscription/RG/resource names.
+resources.json
+
+# Tracks the IP set on the last run so Storage Account / Cosmos DB scripts
+# can remove the previous entry when your IP changes.
+.last-ip

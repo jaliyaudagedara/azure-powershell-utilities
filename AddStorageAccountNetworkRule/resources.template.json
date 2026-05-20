@@ -1,0 +1,51 @@
+[
+    {
+        "tenantId": "<Tenant Id 1>",
+        "subscriptionId": "<Subscription Id 1>",
+        "resources": [
+            {
+                "resourceGroupName": "<Resource Group Name 1>",
+                "storageAccounts": [
+                    "<Storage Account Name 1>",
+                    "<Storage Account Name 2>"
+                ]
+            },
+            {
+                "resourceGroupName": "<Resource Group Name 2>",
+                "storageAccounts": [
+                    "<Storage Account Name 3>"
+                ]
+            }
+        ]
+    },
+    {
+        "tenantId": "<Tenant Id 1>",
+        "subscriptionId": "<Subscription Id 2>",
+        "resources": [
+            {
+                "resourceGroupName": "<Resource Group Name 3>",
+                "storageAccounts": [
+                    "<Storage Account Name 4>"
+                ]
+            },
+            {
+                "resourceGroupName": "<Resource Group Name 4>",
+                "storageAccounts": [
+                    "<Storage Account Name 5>"
+                ]
+            }
+        ]
+    },
+    {
+        "tenantId": "<Tenant Id 2>",
+        "subscriptionId": "<Subscription Id 3>",
+        "resources": [
+            {
+                "resourceGroupName": "<Resource Group Name 5>",
+                "storageAccounts": [
+                    "<Storage Account Name 6>"
+                ]
+            }
+        ]
+    }
+]

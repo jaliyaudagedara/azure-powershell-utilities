@@ -1,31 +1,47 @@
 # Description
-#   Utility Script to remove a given FirewallRuleName from set of Azure SQL Servers
+#   Utility Script to remove a given FirewallRuleName from set of Azure SQL Servers (uses az CLI)
 
 # Important Note: This script provided AS IS, please review the code before executing
 
-$firewallRuleName = "<YourFirewallRuleName>"
+. (Join-Path $PSScriptRoot ".." "shared.ps1")
 
-$json = Get-Content -Raw SqlServerList.json | ConvertFrom-Json
+# Replace with your own name/identifier (wildcard pattern matched against the rule name).
+$firewallRuleNamePattern = "JaliyaUdagedara*"
 
-foreach ($item in $json) {
-    $currentAzContext = Get-AzContext
+$json = Get-ResourcesJson -ScriptRoot $PSScriptRoot
 
-    if (($currentAzContext.Tenant.Id -ne $item.tenantId) -or ($currentAzContext.Subscription.Id -ne $item.subscriptionId)) {
-        Write-Host "INF | Switching AzContext: TenantId: '$($item.tenantId)', SubscriptionId: '$($item.subscriptionId)'."
-        $currentAzContext = Set-AzContext -TenantId $item.tenantId -SubscriptionId $item.subscriptionId
-    }
+foreach ($sub in $json) {
+    $currentAzAccount = Switch-AzSubscriptionContext -TenantId $sub.tenantId -SubscriptionId $sub.subscriptionId
+    if ($null -eq $currentAzAccount) { continue }
 
-    if ($currentAzContext.Subscription.State -eq 'Disabled') {
-        Write-Host "WARN | SubscriptionId: '$($item.subscriptionId)' is Disabled. Skippig adding Firewall Rule to SQL Server: '$($item.sqlServerName)'."
-        continue
-    }
+    foreach ($rg in $sub.resources) {
+        Write-Host "ResourceGroup '$($rg.resourceGroupName)':"
 
-    $matchingFirewallRules = Get-AzSqlServerFirewallRule -ResourceGroupName $item.resourceGroupName -ServerName $item.sqlServerName -FirewallRuleName $firewallRuleName
+        foreach ($sqlServerName in $rg.sqlServers) {
+            Write-Host "  SQL Server '$($sqlServerName)':"
 
-    foreach ($rule in $matchingFirewallRules) {
-        Write-Host "INF | Removing Firewall RuleName: '$($rule.FirewallRuleName)'."
-        Remove-AzSqlServerFirewallRule -ResourceGroupName $item.resourceGroupName `
-            -ServerName $item.sqlServerName `
-            -FirewallRuleName $rule.FirewallRuleName
+            $allFirewallRules = az sql server firewall-rule list --resource-group $rg.resourceGroupName --server $sqlServerName --only-show-errors -o json | ConvertFrom-Json
+            if ($null -eq $allFirewallRules) {
+                Write-Host "    Could not list Firewall Rules, skipping."
+                continue
+            }
+
+            $matchingFirewallRules = @($allFirewallRules | Where-Object { $_.name -like $firewallRuleNamePattern })
+            if ($matchingFirewallRules.Count -eq 0) {
+                Write-Host "    No rules matching '$($firewallRuleNamePattern)', skipping."
+                continue
+            }
+
+            foreach ($rule in $matchingFirewallRules) {
+                Write-Host "    Removing rule '$($rule.name)'."
+                az sql server firewall-rule delete --resource-group $rg.resourceGroupName `
+                    --server $sqlServerName `
+                    --name $rule.name `
+                    --only-show-errors | Out-Null
+                if ($LASTEXITCODE -ne 0) {
+                    Write-Host "    ERR | Failed to remove rule '$($rule.name)'."
+                }
+            }
+        }
     }
 }

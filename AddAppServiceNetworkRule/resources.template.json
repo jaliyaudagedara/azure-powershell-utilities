@@ -1,0 +1,51 @@
+[
+    {
+        "tenantId": "<Tenant Id 1>",
+        "subscriptionId": "<Subscription Id 1>",
+        "resources": [
+            {
+                "resourceGroupName": "<Resource Group Name 1>",
+                "appServices": [
+                    "<App Service Name 1>",
+                    "<App Service Name 2>"
+                ]
+            },
+            {
+                "resourceGroupName": "<Resource Group Name 2>",
+                "appServices": [
+                    "<App Service Name 3>"
+                ]
+            }
+        ]
+    },
+    {
+        "tenantId": "<Tenant Id 1>",
+        "subscriptionId": "<Subscription Id 2>",
+        "resources": [
+            {
+                "resourceGroupName": "<Resource Group Name 3>",
+                "appServices": [
+                    "<App Service Name 4>"
+                ]
+            },
+            {
+                "resourceGroupName": "<Resource Group Name 4>",
+                "appServices": [
+                    "<App Service Name 5>"
+                ]
+            }
+        ]
+    },
+    {
+        "tenantId": "<Tenant Id 2>",
+        "subscriptionId": "<Subscription Id 3>",
+        "resources": [
+            {
+                "resourceGroupName": "<Resource Group Name 5>",
+                "appServices": [
+                    "<App Service Name 6>"
+                ]
+            }
+        ]
+    }
+]

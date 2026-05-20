@@ -1,34 +1,17 @@
 ## AddStorageAccountNetworkRule
-- Utility Script to add Current IP to set of Azure Storage Accounts maintained in `StorageAccountList.json`
+- Adds the current IP to each Storage Account listed in `resources.json`. If `.last-ip` (in this folder) exists, that previous IP is removed first so stale entries don't accumulate when your IP changes. Writes the current IP back to `.last-ip`.
+- Skips Storage Accounts where `publicNetworkAccess` is `Disabled` or `networkRuleSet.defaultAction` is `Allow` (no IP restrictions enabled). Best-effort removes the previous IP from skipped accounts to avoid stale entries.
+
+## RemoveStorageAccountNetworkRule
+- Removes the IP recorded in `.last-ip` (in this folder) from each Storage Account listed in `resources.json`. Skips accounts where the IP isn't currently in `networkRuleSet.ipRules`.
 
 ## Notes
-- Install [Azure PowerShell module](https://learn.microsoft.com/en-us/powershell/azure/install-azure-powershell).
- - Connect to Azure with your account
- ```
- Connect-AzAccount
- ```
- - List of Azure Storage Accounts are maintained inside `StorageAccountList.json` in following format
-```
-[
-    {
-        "tenantId": "<Tenant Id 1>",
-        "subscriptionId": "<Subscription Id 1>",
-        "resourceGroupName": "<Resource Group Name 1>",
-        "storageAccountName": "<Storage Account Name 1>"
-    },
-    {
-        "tenantId": "<Tenant Id 2>",
-        "subscriptionId": "<Subscription Id 2>",
-        "resourceGroupName": "<Resource Group Name 2>",
-        "storageAccountName": "<Storage Account Name 2>"
-    }
-]
-```
+- Copy `resources.template.json` to `resources.json` and fill in your own values. `resources.json` is gitignored, so your data stays local.
+- See `resources.template.json` for the schema.
+
 ## Troubleshooting
 
-`WARNING: Unable to acquire token for tenant '<TenantId>' with error 'SharedTokenCacheCredential authentication unavailable. Token acquisition failed for user <User>. Ensure that you have authenticated with a developer tool that supports Azure single sign on`
-
 ```
- Clear-AzContext
- Connect-AzAccount
+ az logout
+ az login
 ```

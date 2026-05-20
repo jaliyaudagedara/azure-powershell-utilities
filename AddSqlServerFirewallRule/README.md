@@ -1,38 +1,17 @@
 ## AddSqlServerFirewallRule
-- Utility Script to add Current IP to set of Azure SQL Servers maintained in `SqlServerList.json`
-
+- Adds the current IP as a named firewall rule to each SQL Server listed in `resources.json`.
+- Skips SQL Servers where `publicNetworkAccess` is `Disabled` or `SecuredByPerimeter` (firewall rules have no effect).
 
 ## RemoveSqlServerFirewallRule
-- Utility Script to remove a given FirewallRuleName from set of Azure SQL Servers maintained in `SqlServerList.json`
+- Removes any firewall rule whose name matches `<YourName>*` (the pattern set at the top of the script) from each SQL Server listed in `resources.json`.
 
 ## Notes
-- Install [Azure PowerShell module](https://learn.microsoft.com/en-us/powershell/azure/install-azure-powershell).
- - Connect to Azure with your account
- ```
- Connect-AzAccount
- ```
- - List of Azure SQL Servers are maintained inside `SqlServerList.json` in following format
-```
-[
-    {
-        "tenantId": "<Tenant Id 1>",
-        "subscriptionId": "<Subscription Id 1>",
-        "resourceGroupName": "<Resource Group Name 1>",
-        "sqlServerName": "<SQL Server Name 1>"
-    },
-    {
-        "tenantId": "<Tenant Id 2>",
-        "subscriptionId": "<Subscription Id 2>",
-        "resourceGroupName": "<Resource Group Name 2>",
-        "sqlServerName": "<SQL Server Name 2>"
-    }
-]
-```
+- Copy `resources.template.json` to `resources.json` and fill in your own values. `resources.json` is gitignored, so your data stays local.
+- See `resources.template.json` for the schema.
+
 ## Troubleshooting
 
-`WARNING: Unable to acquire token for tenant '<TenantId>' with error 'SharedTokenCacheCredential authentication unavailable. Token acquisition failed for user <User>. Ensure that you have authenticated with a developer tool that supports Azure single sign on`
-
 ```
- Clear-AzContext
- Connect-AzAccount
+ az logout
+ az login
 ```
