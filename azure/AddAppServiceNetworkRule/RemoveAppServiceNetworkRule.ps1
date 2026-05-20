@@ -3,7 +3,7 @@
 
 # Important Note: This script provided AS IS, please review the code before executing
 
-. (Join-Path $PSScriptRoot ".." "shared.ps1")
+. (Join-Path $PSScriptRoot ".." ".." "shared.ps1")
 
 # Replace with your own name/identifier (wildcard pattern matched against the rule name).
 $accessRestrictionRuleNamePattern = "JaliyaUdagedara*"

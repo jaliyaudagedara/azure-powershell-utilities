@@ -3,7 +3,7 @@
 
 # Important Note: This script provided AS IS, please review the code before executing
 
-. (Join-Path $PSScriptRoot ".." "shared.ps1")
+. (Join-Path $PSScriptRoot ".." ".." "shared.ps1")
 
 # Replace '<Your Name>' with your name or identifier; defaults to "Jaliya Udagedara".
 # Set as the access list entry's comment - the script uses this comment to find

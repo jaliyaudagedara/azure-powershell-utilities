@@ -1,6 +1,6 @@
-# Shared helpers for the azure-powershell-utilities scripts.
+# Shared helpers for the powershell-utilities scripts.
 # Dot-source from each script:
-#   . (Join-Path $PSScriptRoot ".." "shared.ps1")
+#   . (Join-Path $PSScriptRoot ".." ".." "shared.ps1")
 
 function Get-CurrentPublicIp {
     <#

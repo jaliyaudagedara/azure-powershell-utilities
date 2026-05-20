@@ -3,7 +3,7 @@
 
 # Important Note: This script provided AS IS, please review the code before executing
 
-. (Join-Path $PSScriptRoot ".." "shared.ps1")
+. (Join-Path $PSScriptRoot ".." ".." "shared.ps1")
 
 # Must match the comment used by AddMongoDBAtlasNetworkRule.ps1 (or the per-project
 # override in resources.json) - the script removes any entry tagged with this comment.
